@@ -88,6 +88,18 @@ class JenkinsPipeline(Stack):
                 ]
             )
         )
+        
+        cdk_tests = pipelines.CodeBuildStep('CDK_Tests',
+            input=self.source,
+            commands=[
+                'cd cdk',
+                'python --version',
+                'python3 --version',
+            ],
+            build_environment=codebuild.BuildEnvironment(
+                build_image=codebuild.LinuxBuildImage.STANDARD_5_0
+            )
+        )
 
         cdk_tests = pipelines.CodeBuildStep('CDKTests',
             input=self.source,

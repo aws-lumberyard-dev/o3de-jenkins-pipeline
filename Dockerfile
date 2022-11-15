@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.332.3-lts-jdk11
+FROM jenkins/jenkins:2.361.3-lts-jdk11
 
 # Using JENKINS_HOME and REF set on the base image
 ARG uid=1000
@@ -39,6 +39,7 @@ ENV JENKINS_OPTS="--webroot=${JENKINS_LOCAL}/war"
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false \
   -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400 \
   -Djenkins.model.Jenkins.logStartupPerformance=true \
+  -Djenkins.model.Jenkins.buildsDir=${JENKINS_HOME}/builds/\${ITEM_FULL_NAME} \
   -Xms8g \
   -Xmx8g \
   -XX:+AlwaysPreTouch \
@@ -56,4 +57,4 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false \
 
 # Start jenkins using a custom entrypoint. See start-jenkins.sh for details.
 COPY start-jenkins.sh /usr/local/bin/start-jenkins.sh
-ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/start-jenkins.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/start-jenkins.sh"]

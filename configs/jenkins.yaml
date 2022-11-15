@@ -1,12 +1,20 @@
 jenkins:
   numExecutors: 6  # Jenkins pipeline runs some pre/post-build pipeline tasks on the controller. Increased from default (2) to prevent long queues.
   securityRealm:
-    github:
-      githubWebUri: "https://github.com"
-      githubApiUri: "https://api.github.com"
-      clientID: "${GITHUB_ID}"
-      clientSecret: "${GITHUB_SECRET}"
-      oauthScopes: "read:org,user:email"
+    saml:
+      advancedConfiguration:
+        forceAuthn: false
+        nameIdPolicyFormat: "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+        spEntityId: ${/jenkins/config/url}
+      binding: "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+      displayNameAttributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+      emailAttributeName: "EMAIL"
+      groupsAttributeName: "POSIX_GROUPS"
+      idpMetadataConfiguration:
+        period: 0
+        url: ${/jenkins/config/idp-url}
+      maximumAuthenticationLifetime: 86400
+      usernameCaseConversion: "lowercase"
   authorizationStrategy:
     projectMatrix:
       permissions:
@@ -15,8 +23,8 @@ jenkins:
     enabled: true
 unclassified:
   location:
-    url: ${JENKINS_URL}
-    adminAddress: "${JENKINS_EMAIL_ADDRESS}"
+    url: ${/jenkins/config/url}
+    adminAddress: "${/jenkins/config/email}"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleOnOver
   email-ext:
@@ -29,13 +37,22 @@ unclassified:
     defaultTriggerIds:
     - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
     mailAccount:
-      smtpHost: "${SMTP_HOST}"
-      smtpPassword: "${SMTP_PASSWORD}"
-      smtpUsername: "${SMTP_USERNAME}"
+      smtpHost: "${/jenkins/config/smtp-host}"
+      smtpPassword: "${/jenkins/config/smtp-password}"
+      smtpUsername: "${/jenkins/config/smtp-username}"
       useTls: true
 security:
   scriptApproval:
     approvedSignatures:
+    - "field hudson.plugins.git.GitSCM GIT_BRANCH"
     - "field hudson.plugins.git.GitSCM GIT_COMMIT"
-    - "method org.jenkinsci.plugins.workflow.steps.FlowInterruptedException getCauses"
+    - "method hudson.model.Cause$UserIdCause getUserId"
+    - "method hudson.model.Run getCause java.lang.Class"
+    - "method java.net.URL getHost"
+    - "method java.net.URL getPort"
+    - "method java.net.URL getProtocol"
     - "new java.net.URL java.lang.String java.lang.String int java.lang.String"
+    - "method org.jenkinsci.plugins.workflow.steps.FlowInterruptedException getCauses"
+    - "method org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper getRawBuild"
+    - "new java.net.URL java.lang.String java.lang.String int java.lang.String"
+    - "staticMethod jenkins.model.Jenkins getInstance"

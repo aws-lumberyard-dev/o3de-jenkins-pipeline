@@ -1,0 +1,16 @@
+# Config for Project-based Matrix Authorization Strategy
+# Default admin role granted in jenkins.yaml
+jenkins:
+  authorizationStrategy:
+    projectMatrix:
+      permissions:
+      # Admin
+      - "Overall/Administer:${/jenkins/config/admin-team}"
+      # Team
+      - "Job/Build:${/jenkins/config/developer-team}"
+      - "Job/Cancel:${/jenkins/config/developer-team}"
+      - "Overall/Read:${/jenkins/config/developer-team}"
+      # O3DE Bots
+      - "Job/Build:${/jenkins/config/bot-account}"
+      - "Job/Cancel:${/jenkins/config/bot-account}"
+      - "Overall/Read:${/jenkins/config/bot-account}"

@@ -1,0 +1,871 @@
+# Config for AWS EC2 plugin
+jenkins:
+  clouds:
+  - amazonEC2:
+      cloudName: ${/jenkins/config/aws-region}
+      instanceCapStr: "300"
+      noDelayProvisioning: true
+      region: "us-west-2"
+      sshKeysCredentialsId: "build-node-credentials" 
+      templates:
+      - ami: "ami-01434f0c2b86402d2"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "UBUNTU18_BLD_1"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "linux"
+        launchTimeoutStr: "300"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "UBUNTU18_BLD_1"
+        tenancy: Default
+        type: C48xlarge
+        useEphemeralDevices: false
+        userData: "#!/bin/bash\nsed -i /etc/hosts -e \"s/^127.0.0.1 localhost$/127.0.0.1\
+          \ localhost $(hostname)/\" \necho 'export ENV_3RDPARTY_PATH=/home/lybuilder/ly/workspace/3rdParty'\
+          \ >> /etc/profile.d/jenkins_config.sh\necho 'export TMPDIR=/tmp' >> /etc/profile.d/jenkins_config.sh\n\
+          sudo systemctl start filebeat\n\nsudo dd if=/dev/zero of=/swapfile bs=1M\
+          \ count=6144 &&\nsudo chmod 600 /swapfile &&\nsudo mkswap /swapfile &&\n\
+          sudo swapon /swapfile"
+        zone: "us-west-2a"
+      - ami: "ami-0048f31ef69339c6f"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "WIN2019_INC_4"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "windows-8fe4037c"
+        launchTimeoutStr: "600"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "c:/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "WIN2019_INC_4"
+        tenancy: Default
+        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
+        type: C59xlarge
+        useEphemeralDevices: false
+        zone: "us-west-2a"
+      - ami: "ami-04264f330cb47ce44"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "MARS_PUBLISH_1_old"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        instanceCapStr: "1"
+        labelString: "metrics-old"
+        launchTimeoutStr: "300"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: true
+        subnetId: "subnet-095d78fbeba94a487"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "MARS_PUBLISH_1"
+        tenancy: Default
+        type: C5Large
+        useEphemeralDevices: false
+        userData: |-
+          #!/bin/bash
+          sudo systemctl enable filebeat
+          sudo service filebeat start
+        zone: "us-west-2b"
+      - ami: "ami-067ae4aa5d54171d3"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "WIN2019_INC_2"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "windows-047e5cdf"
+        launchTimeoutStr: "600"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "c:/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: "subnet-0a67f5cb6cc79e89f"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "WIN2019_INC_2"
+        tenancy: Default
+        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
+        type: C59xlarge
+        useEphemeralDevices: false
+        zone: "us-west-2a"
+      - ami: "ami-0aa178f91b1058347"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "Sync-Fork"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "sync-fork"
+        launchTimeoutStr: "300"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "ubuntu"
+        remoteFS: "/home/ubuntu/workspace"
+        securityGroups: "sg-010fd8d9324508982"
+        stopOnTerminate: false
+        subnetId: "subnet-095d78fbeba94a487"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "Sync-Fork"
+        tenancy: Default
+        type: M5Large
+        useEphemeralDevices: false
+        zone: "us-west-2b"
+      - ami: "ami-03c90df95dd5c7349"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "Validation"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        instanceCapStr: "1"
+        labelString: "validation"
+        launchTimeoutStr: "300"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "ubuntu"
+        remoteFS: "/home/ubuntu/workspace"
+        securityGroups: "sg-010fd8d9324508982"
+        stopOnTerminate: true
+        subnetId: "subnet-095d78fbeba94a487"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "Validation"
+        tenancy: Default
+        type: M5Large
+        useEphemeralDevices: false
+        zone: "us-west-2b"
+      - ami: "ami-0c4b42b58921fd764"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "WIN2019_INC_3"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "windows-b3c8994f1"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "c:/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: "subnet-0a67f5cb6cc79e89f"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "WIN2019_INC_3"
+        tenancy: Default
+        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
+        type: C59xlarge
+        useEphemeralDevices: false
+        zone: "us-west-2a"
+      - ami: "ami-0e4d4db97cb44cc9e"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "UBUNTU20_BLD_3"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "300"
+        labelString: "linux-7cb44cc9e linux-765883a43-test"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        nodeProperties:
+        - envVars:
+            env:
+            - key: "DISPLAY"
+              value: ":0"
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "UBUNTU20_BLD_3"
+        - name: "BranchJob"
+          value: "^${JOB_BASE_NAME}_^${BUILD_NUMBER}"
+        tenancy: Default
+        type: C44xlarge
+        useEphemeralDevices: false
+        userData: "#!/bin/bash\nsed -i /etc/hosts -e \"s/^127.0.0.1 localhost$/127.0.0.1\
+          \ localhost $(hostname)/\" \necho 'export ENV_3RDPARTY_PATH=/home/lybuilder/ly/workspace/3rdParty'\
+          \ >> /etc/profile.d/jenkins_config.sh\necho 'export TMPDIR=/tmp' >> /etc/profile.d/jenkins_config.sh\n\
+          sudo systemctl start filebeat\nsudo ulimit -c unlimited\nsystemctl restart\
+          \ apport\n\nsudo dd if=/dev/zero of=/swapfile bs=1M count=8196 &&\nsudo\
+          \ chmod 600 /swapfile &&\nsudo mkswap /swapfile &&\nsudo swapon /swapfile\n\
+          \nwget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb\
+          \ -O /tmp/amazon-cloudwatch-agent.deb\nsudo dpkg -i /tmp/amazon-cloudwatch-agent.deb\n\
+          aws s3 cp s3://o3de-node-setup/linux/cloudwatch/CloudWatchAgentConfig.json\
+          \ /opt/aws/amazon-cloudwatch-agent/CloudWatchAgentConfig.json\nsudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl\
+          \ -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/CloudWatchAgentConfig.json"
+        zone: "us-west-2a"
+      - ami: "ami-021edaa5d4d476bdf"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "UBUNTU20_BLD_2"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "linux-us-west-2-707531fc7 linux-707531fc7"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        nodeProperties:
+        - envVars:
+            env:
+            - key: "DISPLAY"
+              value: ":0"
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "UBUNTU20_BLD_2"
+        tenancy: Default
+        type: C59xlarge
+        useEphemeralDevices: false
+        userData: "#!/bin/bash\nsed -i /etc/hosts -e \"s/^127.0.0.1 localhost$/127.0.0.1\
+          \ localhost $(hostname)/\" \necho 'export ENV_3RDPARTY_PATH=/home/lybuilder/ly/workspace/3rdParty'\
+          \ >> /etc/profile.d/jenkins_config.sh\necho 'export TMPDIR=/tmp' >> /etc/profile.d/jenkins_config.sh\n\
+          sudo systemctl start filebeat\n\nwget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb\
+          \ -O /tmp/amazon-cloudwatch-agent.deb\nsudo dpkg -i /tmp/amazon-cloudwatch-agent.deb\n\
+          aws s3 cp s3://o3de-node-setup/linux/cloudwatch/CloudWatchAgentConfig.json\
+          \ /opt/aws/amazon-cloudwatch-agent/CloudWatchAgentConfig.json\nsudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl\
+          \ -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/CloudWatchAgentConfig.json"
+        zone: "us-west-2a"
+      - ami: "ami-0c4b42b58921fd764"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "WIN2019_INC_3_M"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "windows-b3c8994f1"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "c:/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: "subnet-0a67f5cb6cc79e89f"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "WIN2019_INC_3_M"
+        tenancy: Default
+        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
+        type: M58xlarge
+        useEphemeralDevices: false
+        zone: "us-west-2a"
+      useInstanceProfileForCredentials: false
+  - amazonEC2:
+      cloudName: "mac-us-west-2"
+      instanceCapStr: "20"
+      noDelayProvisioning: true
+      region: "us-west-2"
+      sshKeysCredentialsId: "build-node-credentials"
+      templates:
+      - ami: "ami-0a5cf9681d2fc3a22"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "EC2_Mac_BIGSUR_BLD_1"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "360"
+        initScript: |-
+          sudo launchctl setenv ES_HOSTS "https://search-mars-sandbox-cvwlujlhbvt5y7epd4jgon4pqq.eu-west-2.es.amazonaws.com:443"
+          sudo launchctl unload /Library/LaunchDaemons/filebeat.plist
+          sudo launchctl load /Library/LaunchDaemons/filebeat.plist
+        instanceCapStr: "10"
+        labelString: "mac-bigsur-2fc3a22"
+        launchTimeoutStr: "10800"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 4
+        minimumNumberOfSpareInstances: 8
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/Users/lybuilder/jenkins"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: true
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "BIGSUR_BLD_1"
+        tenancy: Host
+        type: Mac1Metal
+        useEphemeralDevices: false
+        zone: "us-west-2a"
+      - ami: "ami-02bad1e247ad2e45b"
+        amiType:
+          macData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "EC2_Mac_Catalina_BLD_2"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "360"
+        initScript: |-
+          sudo launchctl setenv ES_HOSTS "https://search-mars-sandbox-cvwlujlhbvt5y7epd4jgon4pqq.eu-west-2.es.amazonaws.com:443"
+          sudo launchctl unload /Library/LaunchDaemons/filebeat.plist
+          sudo launchctl load /Library/LaunchDaemons/filebeat.plist
+        instanceCapStr: "10"
+        labelString: "mac-catalina-7ad2e45b"
+        launchTimeoutStr: "10800"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 4
+        minimumNumberOfSpareInstances: 8
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/Users/lybuilder/jenkins"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: true
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "CATALINA_BLD_2"
+        tenancy: Host
+        type: Mac1Metal
+        useEphemeralDevices: false
+        zone: "us-west-2a"
+      useInstanceProfileForCredentials: false
+  - amazonEC2:
+      cloudName: "gpu-cpu-tests-us-west-2"
+      region: "us-west-2"
+      sshKeysCredentialsId: "build-node-credentials"
+      templates:
+      - ami: "ami-08d5a7dde471291ad"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "WIN2019_GPU_2_Test"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "windows-gpu-test"
+        launchTimeoutStr: "600"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "c:/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        spotConfig:
+          spotMaxBidPrice: "3.64"
+          useBidPrice: true
+        stopOnTerminate: false
+        subnetId: "subnet-0a67f5cb6cc79e89f"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "WIN2019_GPU_2"
+        tenancy: Default
+        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
+        type: G4dn4xlarge
+        useEphemeralDevices: false
+        zone: "us-west-2a"
+      useInstanceProfileForCredentials: false
+  - amazonEC2:
+      cloudName: "Metrics"
+      noDelayProvisioning: true
+      region: "us-west-2"
+      sshKeysCredentialsId: "build-node-credentials"
+      templates:
+      - ami: "ami-07e0caede54ba0c81"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "Metrics-1-Test"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "metrics-test"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: "subnet-095d78fbeba94a487"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "TEST_MARS_Metrics_1"
+        tenancy: Default
+        type: C5aLarge
+        useEphemeralDevices: false
+        userData: |-
+          #!/bin/bash
+          sudo systemctl start filebeat-prod filebeat-sandbox
+          filebeat test config
+          filebeat test output
+        zone: "us-west-2a"
+      - ami: "ami-07e0caede54ba0c81"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "MARS_PUBLISH_1"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        instanceCapStr: "2"
+        labelString: "metrics"
+        launchTimeoutStr: "300"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: "subnet-095d78fbeba94a487"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "MARS_PUBLISH_1"
+        tenancy: Default
+        type: M5Large
+        useEphemeralDevices: false
+        userData: |-
+          #!/bin/bash
+          sudo systemctl start filebeat-prod filebeat-sandbox
+          filebeat test config
+          filebeat test output
+        zone: "us-west-2b"
+      useInstanceProfileForCredentials: false
+  - amazonEC2:
+      cloudName: "Packaging"
+      region: "us-west-2"
+      sshKeysCredentialsId: "build-node-credentials"
+      templates:
+      - ami: "ami-021edaa5d4d476bdf"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: true
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "UBUNTU20_BLD_2_Packaging"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "90"
+        labelString: "linux-707531fc7-packaging"
+        maxTotalUses: 3
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "UBUNTU20_BLD_2_Packaging"
+        tenancy: Default
+        type: C5a4xlarge
+        useEphemeralDevices: false
+        userData: "#!/bin/bash\nsed -i /etc/hosts -e \"s/^127.0.0.1 localhost$/127.0.0.1\
+          \ localhost $(hostname)/\" \necho 'export ENV_3RDPARTY_PATH=/home/lybuilder/ly/workspace/3rdParty'\
+          \ >> /etc/profile.d/jenkins_config.sh\necho 'export TMPDIR=/tmp' >> /etc/profile.d/jenkins_config.sh\n\
+          echo 'export GPG_TTY=$(tty)' >> /etc/profile.d/jenkins_config.sh\nsystemctl\
+          \ start filebeat\n\nrm -v /etc/apt/apt.conf.d/70debconf\napt-get install\
+          \ -y dpkg-sig keychain\n\nsu - lybuilder bash -c ` \\\nexport GNUPGHOME=/home/lybuilder/.gnupg;\n\
+          pass=$(aws secretsmanager get-secret-value --secret-id jenkins-github/gpg/o3de-release-private.key\
+          \ --query SecretString --output text);\naws s3 cp s3://ly-signing-keys/linux/o3de-releases-signing.key\
+          \ - | gpg --pinentry-mode loopback --passphrase $pass --import;\nchown -R\
+          \ lybuilder $GNUPGHOME;\nfpr=$(gpg --no-tty --list-keys --with-colons  |\
+          \ awk -F: '/fpr:/ {print $10; exit}');\necho -e '5\\ny\\n' | gpg --no-tty\
+          \ --command-fd 0 --expert --edit-key $fpr trust;\n`\n\nmv /usr/bin/dpkg-sig\
+          \ /usr/bin/dpkg-sig-cmd\ntee -a  /usr/bin/dpkg-sig > /dev/null <<'EOT'\n\
+          #!/bin/bash\n\nset +x\npass=$(aws secretsmanager get-secret-value --secret-id\
+          \ jenkins-github/gpg/o3de-release-private.key --query SecretString --output\
+          \ text)\nexec /usr/bin/dpkg-sig-cmd -g \"--pinentry-mode loopback --passphrase\
+          \ $pass\" \"$@\"\nEOT\n\nchmod 755 /usr/bin/dpkg-sig"
+        zone: "us-west-2a"
+      - ami: "ami-021edaa5d4d476bdf"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "UBUNTU20_BLD_2_Packaging_Test"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "300"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: NORMAL
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tenancy: Default
+        type: C5a4xlarge
+        useEphemeralDevices: false
+        userData: "#!/bin/bash\nsed -i /etc/hosts -e \"s/^127.0.0.1 localhost$/127.0.0.1\
+          \ localhost $(hostname)/\" \necho 'export ENV_3RDPARTY_PATH=/home/lybuilder/ly/workspace/3rdParty'\
+          \ >> /etc/profile.d/jenkins_config.sh\necho 'export TMPDIR=/tmp' >> /etc/profile.d/jenkins_config.sh\n\
+          echo 'export GPG_TTY=$(tty)' >> /etc/profile.d/jenkins_config.sh\nsudo systemctl\
+          \ start filebeat\n\nsudo rm -v /etc/apt/apt.conf.d/70debconf\nsudo apt-get\
+          \ install -y dpkg-sig keychain\n\nsu - lybuilder -c ` \\\n\nexport GNUPGHOME=/home/lybuilder/.gnupg;\n\
+          pass=$(aws secretsmanager get-secret-value --secret-id jenkins-github/gpg/o3de-release-private.key\
+          \ --query SecretString --output text);\naws s3 cp s3://ly-signing-keys/linux/o3de-releases-signing.key\
+          \ - | gpg --pinentry-mode loopback --passphrase $pass --import;\nchown -R\
+          \ lybuilder $GNUPGHOME;\nfpr=$(gpg --no-tty --list-keys --with-colons  |\
+          \ awk -F: '/fpr:/ {print $10; exit}');\necho -e '5\\ny\\n' | gpg --no-tty\
+          \ --command-fd 0 --expert --edit-key $fpr trust;\necho 'allow-preset-passphrase'\
+          \ >> $GNUPGHOME/gpg-agent.conf;\necho 'max-cache-ttl 14400' >> $GNUPGHOME/gpg-agent.conf;\n\
+          echo 'pinentry-program /usr/bin/pinentry-curses' >> $GNUPGHOME/gpg-agent.conf;\n\
+          gpg-connect-agent reloadagent /bye;\nchown -R lybuilder $GNUPGHOME;\necho\
+          \ -e \"$pass\\n\" | keychain --eval --agents gpg $fpr;\n`"
+        zone: "us-west-2a"
+      - ami: "ami-0b6a8649a4a28adb2"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "WIN2019_INC_4_Installer_Test"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "windows-installer-test"
+        launchTimeoutStr: "600"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "c:/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: "subnet-0a67f5cb6cc79e89f"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "WIN2019_INC_4_Installer_Test"
+        tenancy: Default
+        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
+        type: C52xlarge
+        useEphemeralDevices: false
+        zone: "us-west-2a"
+      useInstanceProfileForCredentials: false
+  - amazonEC2:
+      cloudName: "Management"
+      region: "us-west-2"
+      sshKeysCredentialsId: "build-node-credentials"
+      templates:
+      - ami: "ami-07e0caede54ba0c81"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "ubuntu-command-host"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: "arn:aws:iam::288697475520:instance-profile/jenkins-node-cfn-deploy"
+        idleTerminationMinutes: "30"
+        instanceCapStr: "1"
+        labelString: "ubuntu-command"
+        launchTimeoutStr: "300"
+        maxTotalUses: -1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: false
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: "lybuilder"
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: "subnet-095d78fbeba94a487"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "ubuntu-command"
+        tenancy: Default
+        type: C5aLarge
+        useEphemeralDevices: false
+        userData: "#!/bin/bash\nsed -i /etc/hosts -e \"s/^127.0.0.1 localhost$/127.0.0.1\
+          \ localhost $(hostname)/\" \necho 'export ENV_3RDPARTY_PATH=/home/lybuilder/ly/workspace/3rdParty'\
+          \ >> /etc/profile.d/jenkins_config.sh\necho 'export TMPDIR=/tmp' >> /etc/profile.d/jenkins_config.sh\n\
+          sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common\
+          \ unzip jq \nsudo apt-get install -y python3 python3-pip python-is-python3\n\
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add\
+          \ \nsudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu\
+          \ focal stable\"\nsudo apt update\nsudo apt install -y docker-ce\nsudo service\
+          \ docker start\nsudo usermod -a -G docker lybuilder"
+        zone: "us-west-2a"
+      useInstanceProfileForCredentials: false

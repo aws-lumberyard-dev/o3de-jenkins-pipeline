@@ -1,0 +1,12 @@
+# Config for Build Failure Analyzer plugin
+# See: https://plugins.jenkins.io/build-failure-analyzer/
+unclassified:
+  buildFailureAnalyzer:
+    gerritTriggerEnabled: true
+    globalEnabled: true
+    knowledgeBase: "localFile"
+    maxLogSize: 0
+    noCausesEnabled: true
+    noCausesMessage: "No problems were identified. If you know why this problem occurred,\
+      \ please add a suitable Cause for it."
+    nrOfScanThreads: 3

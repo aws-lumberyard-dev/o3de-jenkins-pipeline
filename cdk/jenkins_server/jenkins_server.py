@@ -185,7 +185,6 @@ class JenkinsServerStack(Stack):
 
         alb = elb.ApplicationLoadBalancer(self, 'ALB',
             vpc=self.vpc,
-            deletion_protection=True,
             internet_facing=True
         )
 

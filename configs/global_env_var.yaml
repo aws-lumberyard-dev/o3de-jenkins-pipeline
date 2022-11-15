@@ -44,4 +44,4 @@ jenkins:
       - key: "TEST_SCREENSHOT_BUCKET"
         value: "ly-spectra-jenkins-pipelines-test-screenshots"
       - key: "VALIDATOR_NOTIFICATIONS"
-        value: "ly-validators@amazon.com,ly-spectra-ops@amazon.com,ly-infra@amazon.com"
+        value: ${/jenkins/config/validator-notifications}

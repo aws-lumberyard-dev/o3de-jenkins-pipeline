@@ -52,7 +52,7 @@ jenkins:
           \ count=6144 &&\nsudo chmod 600 /swapfile &&\nsudo mkswap /swapfile &&\n\
           sudo swapon /swapfile"
         zone: "us-west-2a"
-      - ami: "ami-0048f31ef69339c6f"
+      - ami: "ami-03e2d84860cdb0fd1"
         amiType:
           unixData:
             sshPort: "22"
@@ -288,7 +288,7 @@ jenkins:
         type: C59xlarge
         useEphemeralDevices: false
         zone: "us-west-2a"
-      - ami: "ami-0e4d4db97cb44cc9e"
+      - ami: "ami-0d43939ae3234e23c"
         amiType:
           unixData:
             sshPort: "22"
@@ -439,7 +439,7 @@ jenkins:
       region: "us-west-2"
       sshKeysCredentialsId: "build-node-credentials"
       templates:
-      - ami: "ami-0a5cf9681d2fc3a22"
+      - ami: "ami-03af6db1aea63ae3d"
         amiType:
           unixData:
             sshPort: "22"
@@ -477,12 +477,12 @@ jenkins:
         t2Unlimited: false
         tags:
         - name: "Name"
-          value: "BIGSUR_BLD_1"
+          value: "BIGSUR_BLD_2"
         tenancy: Host
         type: Mac1Metal
         useEphemeralDevices: false
         zone: "us-west-2a"
-      - ami: "ami-02bad1e247ad2e45b"
+      - ami: "ami-072fbaee040baec3f"
         amiType:
           macData:
             sshPort: "22"
@@ -490,7 +490,7 @@ jenkins:
         connectBySSHProcess: false
         connectionStrategy: PRIVATE_IP
         deleteRootOnTermination: false
-        description: "EC2_Mac_Catalina_BLD_2"
+        description: "EC2_Mac_Catalina_BLD_3"
         ebsEncryptRootVolume: DEFAULT
         ebsOptimized: true
         hostKeyVerificationStrategy: ACCEPT_NEW
@@ -531,7 +531,7 @@ jenkins:
       region: "us-west-2"
       sshKeysCredentialsId: "build-node-credentials"
       templates:
-      - ami: "ami-08d5a7dde471291ad"
+      - ami: "ami-093d84e302f73fba8"
         amiType:
           unixData:
             sshPort: "22"

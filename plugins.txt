@@ -25,6 +25,7 @@ pam-auth:1.10
 pipeline-aws:1.43
 pipeline-stage-view:2.27
 pipeline-utility-steps:2.13.1
+remote-file:1.22
 saml:4.372.v89f13e4c9e97
 ssh-slaves:1.814.vc82988f54b_10
 timestamper:1.20

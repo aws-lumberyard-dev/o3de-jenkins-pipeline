@@ -2,7 +2,7 @@ artifact-manager-s3:670.v0558a_cb_c82c2
 aws-global-configuration:106.v106dc1d8d86e
 aws-java-sdk:1.12.287-357.vf82d85a_6eefd
 blueocean:1.25.8
-branch-api:2.1046.v0ca_37783ecc5
+branch-api:2.1051.v9985666b_f6cc
 build-timeout:1.24
 build-failure-analyzer:2.4.0
 build-with-parameters:1.6

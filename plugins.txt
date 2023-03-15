@@ -10,7 +10,7 @@ configuration-as-code:1569.vb_72405b_80249
 configuration-as-code-secret-ssm:1.0.1
 description-setter:1.10
 display-url-api:2.3.6
-ec2:1.68
+ec2:2.0.3
 email-ext:2.92
 external-monitor-job:203.v683c09d993b_9
 git:4.13.0

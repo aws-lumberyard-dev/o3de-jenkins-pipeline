@@ -2,11 +2,19 @@
 # See: https://plugins.jenkins.io/build-failure-analyzer/
 unclassified:
   buildFailureAnalyzer:
-    gerritTriggerEnabled: true
+    gerritTriggerEnabled: false
     globalEnabled: true
-    knowledgeBase: "localFile"
+    knowledgeBase:
+      mongoDB:
+        dbName: "build-failure-rca"
+        enableStatistics: true
+        host: ${/jenkins/config/bfa/host}
+        password: ${/jenkins/config/bfa/password}
+        port: 27017
+        successfulLogging: false
+        userName: ${/jenkins/config/bfa/username}
     maxLogSize: 0
     noCausesEnabled: true
     noCausesMessage: "No problems were identified. If you know why this problem occurred,\
       \ please add a suitable Cause for it."
-    nrOfScanThreads: 3
+    nrOfScanThreads: 5

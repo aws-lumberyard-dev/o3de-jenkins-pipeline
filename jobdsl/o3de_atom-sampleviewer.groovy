@@ -1,15 +1,16 @@
-multibranchPipelineJob('O3DE-ASV') {
+multibranchPipelineJob('o3de-atom-sampleviewer-dev') {
     branchSources {
         branchSource {
             source {
                 github {
-                    id('O3DE-ASV-GitHub')
+                    id('o3de-atom-sampleviewer-dev')
+                    configuredByUrl(false)
+                    credentialsId('github')
                     repoOwner('aws-lumberyard-dev')
                     repository('o3de-atom-sampleviewer')
-                    repositoryUrl('https://github.com/aws-lumberyard-dev/o3de-atom-sampleviewer')
-                    configuredByUrl(false)
-                    credentialsId('github-access-token')
+                    repositoryUrl('https://github.com/aws-lumberyard-dev/o3de-atom-sampleviewer.git')
                     traits {
+                        authorInChangelogTrait()
                         gitHubBranchDiscovery {
                             strategyId(3)
                         }
@@ -35,16 +36,25 @@ multibranchPipelineJob('O3DE-ASV') {
                         named {
                             name('development')
                         }
+                        named {
+                            name('stabilization/*')
+                        }
                     }
                 }
             }
         }
     }
-    description('Pipeline Job for the GE&DS fork of the O3DE repo.')
-    displayName('O3DE ASV-Fork [Branches]')
+    configure {
+        def traits = it / 'sources' / 'data' / 'jenkins.branch.BranchSource' / 'source' / 'traits'
+        traits << 'org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait' {
+            strategyId(1)
+            trust(class: 'org.jenkinsci.plugins.github_branch_source.ForkPullRequestDiscoveryTrait$TrustPermission')
+        }
+    }
+    displayName('MultiplayerSample Dev Branches')
     factory {
         workflowBranchProjectFactory {
-            scriptPath('scripts/build/Jenkins/Jenkinsfile')
+            scriptPath('Scripts/build/Jenkins/Jenkinsfile')
         }
     }
     orphanedItemStrategy {
@@ -53,11 +63,9 @@ multibranchPipelineJob('O3DE-ASV') {
             numToKeep(14)
         }
     }
-    configure {
-        def traits = it / 'sources' / 'data' / 'jenkins.branch.BranchSource' / 'source' / 'traits'
-        traits << 'org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait' {
-            strategyId(1)
-            trust(class: 'org.jenkinsci.plugins.github_branch_source.ForkPullRequestDiscoveryTrait$TrustPermission')
+    triggers {
+        periodicFolderTrigger {
+            interval('2m')
         }
     }
 }

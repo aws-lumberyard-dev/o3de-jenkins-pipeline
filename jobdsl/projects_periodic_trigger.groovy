@@ -18,7 +18,7 @@ pipelineJob('projects_periodic_trigger') {
                         booleanParam(name: 'CLEAN_WORKSPACE', value: true),
                         string(name: 'S3SIS_UPLOAD_PARAMS', value: '--include "build/**/*.*"')
                     ]
-            '''.stripIndent().trim())
+            ''')
         }
     }
     logRotator {

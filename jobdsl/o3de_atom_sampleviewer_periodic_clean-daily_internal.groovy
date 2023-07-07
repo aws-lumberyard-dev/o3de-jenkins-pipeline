@@ -39,6 +39,7 @@ multibranchPipelineJob('o3de-atom-sampleviewer_periodic-clean-daily-internal') {
     factory {
         remoteJenkinsFileWorkflowBranchProjectFactory {
             fallbackBranch('development')
+            matchBranches(true)
             remoteJenkinsFileSCM {
                 gitSCM {
                     userRemoteConfigs {

@@ -24,6 +24,8 @@ freeStyleJob('sync_o3de-multiplayersample_development') {
             branch('development')
             remote {
                 credentials('github')
+                name('')
+                refspec('')
                 url('https://github.com/o3de/o3de-multiplayersample.git')
             }
         }

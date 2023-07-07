@@ -13,6 +13,8 @@ pipelineJob('validate_build_rca') {
                     }
                     remote {
                         credentials('github')
+                        name('')
+                        refspec('')
                         url('https://github.com/aws-lumberyard/build-failure-rca.git')
                     }
                 }

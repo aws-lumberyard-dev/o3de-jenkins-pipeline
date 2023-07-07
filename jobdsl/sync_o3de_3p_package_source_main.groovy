@@ -24,6 +24,8 @@ freeStyleJob('sync_o3de_3p-package-source_main') {
             branch('main')
             remote {
                 credentials('github')
+                name('')
+                refspec('')
                 url('https://github.com/o3de/3p-package-source.git')
             }
         }

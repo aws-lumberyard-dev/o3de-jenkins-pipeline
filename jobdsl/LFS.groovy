@@ -37,6 +37,8 @@ freeStyleJob('CreateLFS-aws-lumberyard') {
             branch('*/s3-permissions-fix')
             remote {
                 credentials('github')
+                name('')
+                refspec('')
                 url('https://github.com/amzn-changml/github-aws-lfs-service.git')
             }
         }
@@ -160,6 +162,8 @@ freeStyleJob('CreateLFS-Internal') {
             branch('*/main')
             remote {
                 credentials('github')
+                name('')
+                refspec('')
                 url('https://github.com/aws-lumberyard/github-aws-lfs-service.git')
             }
         }

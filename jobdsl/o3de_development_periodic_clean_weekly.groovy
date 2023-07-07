@@ -13,6 +13,8 @@ pipelineJob('O3DE-LY-Fork-development_periodic-clean-weekly-internal') {
                     }
                     remote {
                         credentials('github')
+                        name('')
+                        refspec('')
                         url('https://github.com/aws-lumberyard-dev/o3de.git')
                     }
                 }

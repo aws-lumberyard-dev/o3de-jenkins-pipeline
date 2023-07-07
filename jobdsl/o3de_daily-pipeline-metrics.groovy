@@ -13,6 +13,8 @@ pipelineJob('O3DE-Fork_daily-pipeline-metrics') {
                     }
                     remote {
                         credentials('github')
+                        name('')
+                        refspec('')
                         url('https://github.com/aws-lumberyard-dev/o3de.git')
                     }
                 }

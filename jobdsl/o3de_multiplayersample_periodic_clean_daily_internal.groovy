@@ -1,14 +1,14 @@
-multibranchPipelineJob('o3de-atom-sampleviewer_periodic-clean-daily-internal') {
+multibranchPipelineJob('o3de-multiplayersample_periodic-clean-daily-internal') {
     branchSources {
         branchSource {
             source {
                 github {
-                    id('o3de-atom-sampleviewer_periodic-clean-daily-internal')
+                    id('o3de-multiplayersample_periodic-clean-daily-internal')
                     configuredByUrl(false)
                     credentialsId('github')
                     repoOwner('aws-lumberyard-dev')
-                    repository('o3de-atom-sampleviewer')
-                    repositoryUrl('https://github.com/aws-lumberyard-dev/o3de-atom-sampleviewer.git')
+                    repository('o3de-multiplayersample')
+                    repositoryUrl('https://github.com/aws-lumberyard-dev/o3de-multiplayersample.git')
                     traits {
                         authorInChangelogTrait()
                         gitHubBranchDiscovery {
@@ -26,16 +26,11 @@ multibranchPipelineJob('o3de-atom-sampleviewer_periodic-clean-daily-internal') {
                             triggeredBranchesRegex('^$')
                         }
                     }
-                    namedExceptions {
-                        named {
-                            name('development')
-                        }
-                    }
                 }
             }
         }
     }
-    displayName('O3DE LY-Fork [Periodic Daily Incremental]')
+    description('Multiplayer Sample based on Spectra Technology')
     factory {
         remoteJenkinsFileWorkflowBranchProjectFactory {
             fallbackBranch('development')

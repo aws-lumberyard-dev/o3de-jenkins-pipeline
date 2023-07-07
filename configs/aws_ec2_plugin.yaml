@@ -6,7 +6,7 @@ jenkins:
       instanceCapStr: "300"
       noDelayProvisioning: true
       region: "us-west-2"
-      sshKeysCredentialsId: "build-node-credentials" 
+      sshKeysCredentialsId: "jenkins-build-node" 
       templates:
       - ami: "ami-01434f0c2b86402d2"
         amiType:
@@ -437,7 +437,7 @@ jenkins:
       instanceCapStr: "20"
       noDelayProvisioning: true
       region: "us-west-2"
-      sshKeysCredentialsId: "build-node-credentials"
+      sshKeysCredentialsId: "jenkins-build-node"
       templates:
       - ami: "ami-03af6db1aea63ae3d"
         amiType:
@@ -529,7 +529,7 @@ jenkins:
   - amazonEC2:
       cloudName: "gpu-cpu-tests-us-west-2"
       region: "us-west-2"
-      sshKeysCredentialsId: "build-node-credentials"
+      sshKeysCredentialsId: "jenkins-build-node"
       templates:
       - ami: "ami-093d84e302f73fba8"
         amiType:
@@ -578,7 +578,7 @@ jenkins:
       cloudName: "Metrics"
       noDelayProvisioning: true
       region: "us-west-2"
-      sshKeysCredentialsId: "build-node-credentials"
+      sshKeysCredentialsId: "jenkins-build-node"
       templates:
       - ami: "ami-07e0caede54ba0c81"
         amiType:
@@ -670,7 +670,7 @@ jenkins:
   - amazonEC2:
       cloudName: "Packaging"
       region: "us-west-2"
-      sshKeysCredentialsId: "build-node-credentials"
+      sshKeysCredentialsId: "jenkins-build-node"
       templates:
       - ami: "ami-021edaa5d4d476bdf"
         amiType:
@@ -818,7 +818,7 @@ jenkins:
   - amazonEC2:
       cloudName: "Management"
       region: "us-west-2"
-      sshKeysCredentialsId: "build-node-credentials"
+      sshKeysCredentialsId: "jenkins-build-node"
       templates:
       - ami: "ami-07e0caede54ba0c81"
         amiType:

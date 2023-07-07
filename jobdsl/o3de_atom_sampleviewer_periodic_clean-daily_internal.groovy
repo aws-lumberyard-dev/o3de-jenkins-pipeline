@@ -45,6 +45,8 @@ multibranchPipelineJob('o3de-atom-sampleviewer_periodic-clean-daily-internal') {
                     userRemoteConfigs {
                         userRemoteConfig {
                             url('https://github.com/aws-lumberyard-dev/o3de.git')
+                            name('')
+                            refspec('')
                             credentialsId('github')
                         }
                     branches {

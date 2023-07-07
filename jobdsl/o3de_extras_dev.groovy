@@ -39,6 +39,8 @@ multibranchPipelineJob('o3de-extras-dev') {
                     userRemoteConfigs {
                         userRemoteConfig {
                             url('https://github.com/aws-lumberyard-dev/o3de.git')
+                            name('')
+                            refspec('')
                             credentialsId('github')
                         }
                     branches {

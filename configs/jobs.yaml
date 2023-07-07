@@ -2,5 +2,42 @@
 # Add a file entry for each groovy script containing job definitions.
 # Recommended: Store files in jenkins_local to prevent state data in jenkins_home
 jobs:
-  - file: ${JENKINS_LOCAL}/jobdsl/o3de_fork.groovy
-  - file: ${JENKINS_LOCAL}/jobdsl/o3de_asv.groovy
+  # O3DE Projects
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_atom_sampleviewer_periodic_clean-daily_internal.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_atom_sampleviewer.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_daily-pipeline-metrics.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_development_periodic_clean_weekly.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_development_weekly_artifacts_upload.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_development_weekly.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_extras_dev.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_loft-arch-vis-sample.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_multiplayersample_periodic_clean_daily_internal.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_multiplayersample.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_netsoaktest.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_periodic_incremental_daily_internal.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de.groovy
+  # Tools
+  - file: ${JENKINS_LOCAL}/jobdsl/3p_Packaging.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/Discard_Volume_Test_periodic_clean_weekly_internal.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/GitHub.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/LFS.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/mars_metrics.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/periodic_incremental_daily_development_trigger.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/pipeline_metrics_upload_nightly.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/projects_periodic_trigger.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/validate_build_rca.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/validation_pipeline.groovy
+  # Sync
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_3p_package_scripts_main.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_3p_package_source_main.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_atom_sampleviewer_development.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_atom_sampleviewer_main.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_azslc_development.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_development.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_extras_development.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_extras_main.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_main.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_multiplayersample_development.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de_netsoaktest_development.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de.org_development.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/sync_o3de.org_main.groovy

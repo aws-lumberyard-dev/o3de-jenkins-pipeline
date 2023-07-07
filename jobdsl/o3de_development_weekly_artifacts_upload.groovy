@@ -13,6 +13,8 @@ pipelineJob('O3DE-LY-Fork-development_weekly-artifacts-upload') {
                     }
                     remote {
                         credentials('github')
+                        name('')
+                        refspec('')
                         url('https://github.com/aws-lumberyard-dev/o3de.git')
                     }
                 }

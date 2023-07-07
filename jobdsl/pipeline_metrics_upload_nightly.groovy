@@ -35,6 +35,8 @@ freeStyleJob('pipeline_metrics_upload_nightly') {
         git {
             branch('jenkins_pipeline_metrics')
             remote {
+                name('')
+                refspec('')
                 url('https://git-codecommit.us-west-2.amazonaws.com/v1/repos/Lumberyard')
             }
         }

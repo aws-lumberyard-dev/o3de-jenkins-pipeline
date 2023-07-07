@@ -13,6 +13,8 @@ pipelineJob('Discard-Volume-Test_periodic-clean-weekly-internal') {
                     }
                     remote {
                         credentials('github')
+                        name('')
+                        refspec('')
                         url('https://github.com/aws-lumberyard-dev/o3de.git')
                     }
                 }

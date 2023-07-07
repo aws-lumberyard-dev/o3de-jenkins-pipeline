@@ -24,6 +24,8 @@ freeStyleJob('sync_o3de.org_main') {
             branch('main')
             remote {
                 credentials('github')
+                name('')
+                refspec('')
                 url('https://github.com/o3de/o3de.org.git')
             }
         }

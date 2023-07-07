@@ -12,6 +12,8 @@ pipelineJob('validation_pipeline') {
                         }
                     }
                     remote {
+                        name('')
+                        refspec('')
                         url('https://git-codecommit.us-west-2.amazonaws.com/v1/repos/Validation')
                     }
                 }

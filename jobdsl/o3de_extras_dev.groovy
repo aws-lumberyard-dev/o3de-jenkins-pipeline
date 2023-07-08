@@ -34,6 +34,7 @@ multibranchPipelineJob('o3de-extras-dev') {
     factory {
         remoteJenkinsFileWorkflowBranchProjectFactory {
             fallbackBranch('development')
+            localMarker('')
             remoteJenkinsFileSCM {
                 gitSCM {
                     userRemoteConfigs {
@@ -43,11 +44,13 @@ multibranchPipelineJob('o3de-extras-dev') {
                             refspec('')
                             credentialsId('github')
                         }
-                    branches {
-                        branchSpec {
-                            name('development')
+                        branches {
+                            branchSpec {
+                                name('development')
+                            }
                         }
-                    }
+                        browser {}
+                        gitTool(null)
                     }
                 }
             }

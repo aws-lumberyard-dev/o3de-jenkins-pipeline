@@ -46,7 +46,7 @@ freeStyleJob('pipeline_metrics_upload_nightly') {
             set +x
 
             # Grab the private IP of the load balancer to allow the EC2 instance to use the security group allowlist
-            jenkinsip=$(aws ec2 describe-network-interfaces --filters Name=description,Values="ELB app/prod-jenkins-server/2af6c1cd4bb121e7" --query 'NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress' --output text | head -n1 | tr -d '\r')
+            jenkinsip=$(aws ec2 describe-network-interfaces --filters Name=description,Values="ELB app/prod-jenkins-server/2af6c1cd4bb121e7" --query 'NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress' --output text | head -n1 | tr -d '\\r')
 
             # Create a new hosts entry for the private IP. Note: The hosts file path only works for Windows Cygwin
             echo $jenkinsip jenkins-pipeline.agscollab.com | tee -a /cygdrive/c/Windows/system32/drivers/etc/hosts
@@ -57,7 +57,7 @@ freeStyleJob('pipeline_metrics_upload_nightly') {
             export AWS_STS_REGIONAL_ENDPOINTS=regional
             export ASSUME_ROLE_ARN=arn:aws:iam::646296105064:role/s3_for_ec2bi-lumberyard
 
-            awscred=$(aws --region us-west-2 sts assume-role --role-arn $ASSUME_ROLE_ARN --role-session-name jenkins --endpoint-url https://sts.us-west-2.amazonaws.com | grep -w 'AccessKeyId\|SecretAccessKey\|SessionToken' | awk '{print $2}' | sed 's/\"//g;s/\,//')
+            awscred=$(aws --region us-west-2 sts assume-role --role-arn $ASSUME_ROLE_ARN --role-session-name jenkins --endpoint-url https://sts.us-west-2.amazonaws.com | grep -w 'AccessKeyId\\|SecretAccessKey\\|SessionToken' | awk '{print $2}' | sed 's/\\"//g;s/\\,//')
 
             [ -z "$awscred" ] && { echo "Can't assume role!"; exit 1; }
 
@@ -77,14 +77,14 @@ freeStyleJob('pipeline_metrics_upload_nightly') {
         batchFile('''
                 set LY_3RDPARTY_PATH=C:/ly/3rdParty
                 %WORKSPACE%/python/get_python.bat
-            '''.stripIndent().trim()))
+            '''.stripIndent().trim())
         batchFile('''
                 echo Assuming role...
                 call assumerole.bat
                 del assumerole.bat
                 cd %WORKSPACE%/scripts/build/tools
                 %WORKSPACE%/python/python.cmd jenkins_pipeline_metrics.py
-            '''.stripIndent().trim()))
+            '''.stripIndent().trim())
         
     }
 }

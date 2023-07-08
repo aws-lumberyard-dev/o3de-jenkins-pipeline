@@ -98,13 +98,13 @@ freeStyleJob('3p_Packaging/Validate_Package') {
             echo Validating "$bn"
             echo ------------------------
 
-            printf "\n--- Output of tree \n"
+            printf "\\n--- Output of tree \\n"
             tree "$bn"
 
-            printf "\n--- Scanning package for viruses \n"
+            printf "\\n--- Scanning package for viruses \\n"
             clamscan -r -i "$bn"/
 
-            printf "\n--- Checking package for restricted terms \n"
+            printf "\\n--- Checking package for restricted terms \\n"
             package_platform=${bn##*-}
             if [[ "$package_platform" =~ "multiplatform" ]]; then
                 for p in ${platforms[@]} ; do

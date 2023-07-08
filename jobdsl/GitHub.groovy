@@ -13,12 +13,12 @@ pipelineJob('projects_periodic_trigger') {
                                 timeout(time: 10, unit: 'MINUTES') {
                                         params.REPOS -> repo
                                         script {
-                                            def resp = sh(script: """curl \
-                                                                    -X PUT \
-                                                                    -H "Accept: application/vnd.github+json" \
-                                                                    -H "Authorization: Bearer <YOUR-TOKEN>"\
-                                                                    -H "X-GitHub-Api-Version: 2022-11-28" \
-                                                                    https://api.github.com/repos/OWNER/REPO/collaborators/USERNAME \""", returnStdout: true).trim()
+                                            def resp = sh(script: """curl \\
+                                                                    -X PUT \\
+                                                                    -H "Accept: application/vnd.github+json" \\
+                                                                    -H "Authorization: Bearer <YOUR-TOKEN>"\\
+                                                                    -H "X-GitHub-Api-Version: 2022-11-28" \\
+                                                                    https://api.github.com/repos/OWNER/REPO/collaborators/USERNAME \\""", returnStdout: true).trim()
                                             def respObj = readJSON text: resp
                                         }
                                     }

@@ -77,14 +77,14 @@ freeStyleJob('pipeline_metrics_upload_nightly') {
         batchFile('''
                 set LY_3RDPARTY_PATH=C:/ly/3rdParty
                 %WORKSPACE%/python/get_python.bat
-            '''.stripIndent().trim()))
+            '''.stripIndent().trim())
         batchFile('''
                 echo Assuming role...
                 call assumerole.bat
                 del assumerole.bat
                 cd %WORKSPACE%/scripts/build/tools
                 %WORKSPACE%/python/python.cmd jenkins_pipeline_metrics.py
-            '''.stripIndent().trim()))
+            '''.stripIndent().trim())
         
     }
 }

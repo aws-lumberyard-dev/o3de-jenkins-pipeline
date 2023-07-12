@@ -1,0 +1,65 @@
+# Config to create views to organize jobs
+jenkins:
+  primaryView:
+    list:
+      name: "O3DE-Fork"
+  views:
+  - list:
+    description: "<h3>AR Pipeline for aws-lumberyard-dev fork</h3>\r\n\r\n<p>Game\
+      \ Engine & Developer Services Fork of O3DE: <a href=\"https://github.com/aws-lumberyard-dev/o3de\"\
+      >https://github.com/aws-lumberyard-dev/o3de</a></p>\r\n\r\n<p>Report AR failures:\
+      \ <a href=\"https://wiki.agscollab.com/pages/viewpage.action?pageId=118984287\"\
+      >https://wiki.agscollab.com/pages/viewpage.action?pageId=118984287</a><br>\r\
+      \n  AR Known Issues: <a href=\"https://wiki.agscollab.com/display/lmbr/Known+issues+with+AR+build\"\
+      >https://wiki.agscollab.com/display/lmbr/Known+issues+with+AR+build</a></p>\r\
+      \n\r\n<p>AR pipeline for pull requests (This is the O3DE instance): <a href=\"\
+      https://jenkins.build.o3de.org/job/O3DE/view/change-requests/\">https://jenkins.build.o3de.org</a></p>\r\
+      \n"
+    jobNames:
+    - "O3DE-LY-FORK"
+    - "O3DE-LY-Fork-development_periodic-clean-weekly-internal"
+    - "O3DE-LY-Fork_daily-pipeline-metrics"
+    - "O3DE-LY-Fork_periodic-incremental-daily-internal"
+    - "O3DE-LY-Fork_periodic-incremental-daily-internal/development"
+    - "O3DE-LY-Fork_weekly"
+    name: "O3DE-Fork"
+    recurse: true
+  - list:
+    jobNames:
+      - "loft-arch-vis-sample"
+      - "o3de-atom-sampleviewer-dev"
+      - "o3de-atom-sampleviewer_periodic-clean-daily-internal"
+      - "o3de-atomtest-dev"
+      - "o3de-extras-dev"
+      - "o3de-multiplayersample-dev"
+      - "o3de-multiplayersample_periodic-clean-daily-internal"
+      - "o3de-netsoaktest-dev"
+      name: "Projects"
+  - list:
+    jobNames:
+      - "3p_Packaging"
+      - "Discard-Volume-Test_periodic-clean-weekly-internal"
+      - "Github"
+      - "LFS"
+      - "MARS Metrics"
+      - "O3DE-LY-Fork-development_weekly-artifacts-upload"
+      - "periodic-incremental-daily-development-trigger"
+      - "pipeline_metrics_upload_nightly"
+      - "projects_periodic_trigger"
+      - "sync_o3de-atom-sampleviewer_development"
+      - "sync_o3de-atom-sampleviewer_main"
+      - "sync_o3de-azslc_development"
+      - "sync_o3de-extras_development"
+      - "sync_o3de-extras_main"
+      - "sync_o3de-multiplayersample_development"
+      - "sync_o3de-netsoaktest_development"
+      - "sync_o3de-netsoaktest_main"
+      - "sync_o3de.org_development"
+      - "sync_o3de.org_main"
+      - "sync_o3de_3p-package-scripts_main"
+      - "sync_o3de_3p-package-source_main"
+      - "sync_o3de_development"
+      - "sync_o3de_main"
+      - "validate_build_rca"
+      - "validation_pipeline"
+      name: "Tools"

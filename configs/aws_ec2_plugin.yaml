@@ -167,6 +167,44 @@ jenkins:
         type: C59xlarge
         useEphemeralDevices: false
         zone: "us-west-2a"
+      - ami: "ami-0c169196f4a990b3e"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "WIN2022_INC_1_TEST"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "windows-b3c8994f1-debug windows-b3c8994f1-test windows-a4a28adb2-test windows-2022 windows-latest"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: true
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        numExecutors: 1
+        remoteAdmin: ${/jenkins/config/buildnode/username}
+        remoteFS: "c:/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: "subnet-0a67f5cb6cc79e89f"
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "Beta_WIN2022_INC_1"
+        tenancy: Default
+        tmpDir: "C:\\ly"
+        type: C6a4xlarge
+        useEphemeralDevices: false
+        userData: "git config --global --add safe.directory '*'"
       - ami: "ami-00cd01aeb5a4d5b9d"
         amiType:
           unixData:

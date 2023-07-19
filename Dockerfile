@@ -57,4 +57,4 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false \
 
 # Start jenkins using a custom entrypoint. See start-jenkins.sh for details.
 COPY start-jenkins.sh /usr/local/bin/start-jenkins.sh
-ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/start-jenkins.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/start-jenkins.sh"]

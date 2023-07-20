@@ -4,6 +4,8 @@ jenkins:
     list:
       name: "O3DE-Fork"
   views:
+  - all:
+      name: "all"
   - list:
       description: "<h3>AR Pipeline for aws-lumberyard-dev fork</h3>\r\n\r\n<p>Game\
         \ Engine & Developer Services Fork of O3DE: <a href=\"https://github.com/aws-lumberyard-dev/o3de\"\

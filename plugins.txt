@@ -12,7 +12,6 @@ description-setter:1.10
 ec2:2.0.4
 email-ext:2.92
 external-monitor-job:203.v683c09d993b_9
-git:4.11.5
 github-branch-source:1628.vb_2f51293cb_78
 github-oauth:0.38
 greenballs:1.15.1

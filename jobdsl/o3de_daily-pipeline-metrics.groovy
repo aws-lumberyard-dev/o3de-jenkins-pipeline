@@ -1,4 +1,4 @@
-pipelineJob('O3DE-Fork_daily-pipeline-metrics') {
+pipelineJob('O3DE-LY-Fork_daily-pipeline-metrics') {
     definition {
         cpsScm {
             lightweight(true)

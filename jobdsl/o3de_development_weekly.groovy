@@ -1,4 +1,4 @@
-pipelineJob('O3DE-Fork_weekly') {
+pipelineJob('O3DE-LY-Fork_weekly') {
     definition {
         cpsScm {
             lightweight(true)
@@ -22,7 +22,7 @@ pipelineJob('O3DE-Fork_weekly') {
             scriptPath('scripts/build/Jenkins/Jenkinsfile')
         }
     }
-    displayName('O3DE Fork [Periodic Weekly] Development')
+    displayName('O3DE LY-Fork [weekly]')
     logRotator {
         daysToKeep(60)
         numToKeep(14)

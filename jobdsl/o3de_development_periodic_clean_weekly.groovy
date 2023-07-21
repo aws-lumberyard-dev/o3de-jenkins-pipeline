@@ -22,7 +22,7 @@ pipelineJob('O3DE-LY-Fork-development_periodic-clean-weekly-internal') {
             scriptPath('scripts/build/Jenkins/Jenkinsfile')
         }
     }
-    displayName('O3DE Fork [Periodic Clean Weekly] Development')
+    displayName('O3DE LY-Fork [Periodic Weekly Clean] Development')
     logRotator {
         daysToKeep(60)
         numToKeep(14)

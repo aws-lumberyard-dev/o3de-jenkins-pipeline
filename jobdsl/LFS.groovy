@@ -1,6 +1,6 @@
 folder('LFS')
 
-freeStyleJob('CreateLFS-aws-lumberyard') {
+freeStyleJob('LFS/CreateLFS-aws-lumberyard') {
     label('ubuntu-command')
     parameters {
         stringParam('ORG', 'aws-lumberyard', '')
@@ -125,7 +125,7 @@ freeStyleJob('CreateLFS-aws-lumberyard') {
     }
 }
 
-freeStyleJob('CreateLFS-Internal') {
+freeStyleJob('LFS/CreateLFS-Internal') {
     label('ubuntu-command')
     parameters {
         stringParam('ORG', 'aws-lumberyard', '')

@@ -51,7 +51,7 @@ multibranchPipelineJob('o3de-atom-sampleviewer-dev') {
             trust(class: 'org.jenkinsci.plugins.github_branch_source.ForkPullRequestDiscoveryTrait$TrustPermission')
         }
     }
-    displayName('MultiplayerSample Dev Branches')
+    displayName('Atom SampleViewer Dev Branches')
     factory {
         workflowBranchProjectFactory {
             scriptPath('Scripts/build/Jenkins/Jenkinsfile')

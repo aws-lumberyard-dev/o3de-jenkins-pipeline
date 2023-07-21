@@ -22,7 +22,6 @@ pipelineJob('O3DE-LY-Fork-development_weekly-artifacts-upload') {
             scriptPath('scripts/build/Jenkins/Jenkinsfile')
         }
     }
-    displayName('O3DE Fork [Periodic Clean Weekly] Development')
     logRotator {
         daysToKeep(60)
         numToKeep(14)

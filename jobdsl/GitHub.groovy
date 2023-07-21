@@ -1,6 +1,6 @@
 folder('Github')
 
-pipelineJob('projects_periodic_trigger') {
+pipelineJob('Github/Add user to aws-lumberyard-dev') {
     definition {
         cps {
             sandbox(true)

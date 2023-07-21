@@ -65,3 +65,5 @@ jenkins:
       - "validate_build_rca"
       - "validation_pipeline"
       name: "Tools"
+  - list:
+      name: "xInternal-Projects"

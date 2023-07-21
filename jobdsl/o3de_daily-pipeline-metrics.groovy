@@ -22,7 +22,7 @@ pipelineJob('O3DE-LY-Fork_daily-pipeline-metrics') {
             scriptPath('scripts/build/Jenkins/Jenkinsfile')
         }
     }
-    displayName('O3DE Fork [Daily Metrics]')
+    displayName('O3DE LY-Fork [Daily Metrics]')
     logRotator {
         daysToKeep(14)
         numToKeep(14)

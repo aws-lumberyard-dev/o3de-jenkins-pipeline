@@ -303,6 +303,64 @@ jenkins:
         userData: "<powershell>\n[Environment]::SetEnvironmentVariable(\"JAVA_HOME\"\
           , $null ,\"Machine\") \n</powershell>"
         zone: "us-west-2a"
+      - ami: "ami-0cc5f9d0b6dd8e982"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: false
+        description: "UBUNTU20_BLD_3"
+        ebsEncryptRootVolume: DEFAULT
+        ebsOptimized: true
+        hostKeyVerificationStrategy: ACCEPT_NEW
+        iamInstanceProfile: ${/jenkins/config/instanceprofile}
+        idleTerminationMinutes: "30"
+        labelString: "linux-3234e23c linux-ubuntu-20"
+        maxTotalUses: 1
+        metadataEndpointEnabled: true
+        metadataHopsLimit: 1
+        metadataTokensRequired: true
+        minimumNumberOfInstances: 0
+        minimumNumberOfSpareInstances: 0
+        mode: EXCLUSIVE
+        monitoring: false
+        nodeProperties:
+        - envVars:
+            env:
+            - key: "DISPLAY"
+              value: ":0"
+        numExecutors: 1
+        remoteAdmin: ${/jenkins/config/buildnode/username}
+        remoteFS: "/home/lybuilder/ly"
+        securityGroups: ${/jenkins/config/security-group}
+        stopOnTerminate: false
+        subnetId: ${/jenkins/config/subnet-id}
+        t2Unlimited: false
+        tags:
+        - name: "Name"
+          value: "UBUNTU20_BLD_3"
+        tenancy: Default
+        type: C54xlarge
+        useEphemeralDevices: false
+        userData: "#!/bin/bash\nsed -i /etc/hosts -e \"s/^127.0.0.1 localhost$/127.0.0.1\
+          \ localhost $(hostname)/\" \necho 'export ENV_3RDPARTY_PATH=/home/lybuilder/ly/workspace/3rdParty'\
+          \ >> /etc/profile.d/jenkins_config.sh\necho 'export TMPDIR=/tmp' >> /etc/profile.d/jenkins_config.sh\n\
+          sudo systemctl start filebeat\nsudo ulimit -c unlimited\nsystemctl restart\
+          \ apport\n\ngit config --system credential.helper '!aws codecommit credential-helper\
+          \ $@'\ngit config --system credential.useHttpPath true\n\nsudo dd if=/dev/zero\
+          \ of=/swapfile bs=1M count=8196 &&\nsudo chmod 600 /swapfile &&\nsudo mkswap\
+          \ /swapfile &&\nsudo swapon /swapfile\n\nwget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb\
+          \ -O /tmp/amazon-cloudwatch-agent.deb\nsudo dpkg -i /tmp/amazon-cloudwatch-agent.deb\n\
+          aws s3 cp s3://o3de-node-setup/linux/cloudwatch/CloudWatchAgentConfig.json\
+          \ /opt/aws/amazon-cloudwatch-agent/CloudWatchAgentConfig.json\nsudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl\
+          \ -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/CloudWatchAgentConfig.json\n\
+          \nsudo systemctl stop systemd-timesyncd\nsudo systemctl disable systemd-timesyncd\n\
+          sudo apt install -y chrony libzstd-dev\n\nsed -i '1s/^/server 169.254.169.123\
+          \ prefer iburst minpoll 4 maxpoll 4\\n/' /etc/chrony/chrony.conf\n/etc/init.d/chrony\
+          \ restart\n\npython3 -m pip install PyGithub"
+        zone: "us-west-2a"
       - ami: "ami-0966abb2fd17f5ead"
         amiType:
           unixData:

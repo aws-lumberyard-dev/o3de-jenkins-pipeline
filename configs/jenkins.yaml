@@ -69,4 +69,5 @@ security:
       \ java.lang.String"
     - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods putAt java.lang.Object\
       \ java.lang.String java.lang.Object"
-    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods size java.util.regex.Matcher"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods size java.util.regex.Matcher"\
+    - "staticField hudson.plugins.git.GitSCM GIT_COMMIT"

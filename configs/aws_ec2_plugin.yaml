@@ -276,7 +276,7 @@ jenkins:
         hostKeyVerificationStrategy: ACCEPT_NEW
         iamInstanceProfile: ${/jenkins/config/instanceprofile}
         idleTerminationMinutes: "30"
-        labelString: "windows-latest windows-8fe4037c"
+        labelString: "windows-8fe4037c"
         launchTimeoutStr: "600"
         maxTotalUses: 1
         metadataEndpointEnabled: true

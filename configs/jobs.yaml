@@ -2,5 +2,5 @@
 # Add a file entry for each groovy script containing job definitions.
 # Recommended: Store files in jenkins_local to prevent state data in jenkins_home
 jobs:
-  - file: ${JENKINS_LOCAL}/jobdsl/o3de_fork.groovy
   - file: ${JENKINS_LOCAL}/jobdsl/o3de_asv.groovy
+  - file: ${JENKINS_LOCAL}/jobdsl/o3de_example.groovy

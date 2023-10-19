@@ -8,7 +8,7 @@ build-with-parameters:76.v9382db_f78962
 configuration-as-code:1714.v09593e830cfa
 configuration-as-code-secret-ssm:1.0.1
 description-setter:1.10
-ec2:1628.v6d7b_fc58b_a_1d
+ec2:2.0.4
 email-ext:2.102
 external-monitor-job:215.v2e88e894db_f8
 github-branch-source:1741.va_3028eb_9fd21
@@ -22,7 +22,7 @@ pipeline-aws:1.43
 pipeline-stage-view:2.33
 pipeline-utility-steps:2.16.0
 remote-file:1.24
-saml:2.333.vc81e525974a_c
+saml:4.429.v9a_781a_61f1da_
 ssh-slaves:2.916.vd17b_43357ce4
 timestamper:1.26
 warnings-ng:10.5.0

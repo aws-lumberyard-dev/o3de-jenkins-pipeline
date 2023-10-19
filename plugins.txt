@@ -22,7 +22,7 @@ pipeline-aws:1.43
 pipeline-stage-view:2.33
 pipeline-utility-steps:2.16.0
 remote-file:1.24
-saml:4.429.v9a_781a_61f1da_
+saml:2.333.vc81e525974a_c
 ssh-slaves:2.916.vd17b_43357ce4
 timestamper:1.26
 warnings-ng:10.5.0

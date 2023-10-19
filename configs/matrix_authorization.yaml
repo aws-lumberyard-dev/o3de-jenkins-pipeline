@@ -5,12 +5,26 @@ jenkins:
     projectMatrix:
       permissions:
       # Admin
-      - "Overall/Administer:${/jenkins/config/admin-team}"
-      # Team
-      - "Job/Build:${/jenkins/config/developer-team}"
-      - "Job/Cancel:${/jenkins/config/developer-team}"
-      - "Overall/Read:${/jenkins/config/developer-team}"
-      # O3DE Bots
-      - "Job/Build:${/jenkins/config/bot-account}"
-      - "Job/Cancel:${/jenkins/config/bot-account}"
-      - "Overall/Read:${/jenkins/config/bot-account}"
+      - "GROUP:Overall/Administer:${/jenkins/config/admin}"
+      - "USER:Overall/Administer:admin"
+      # Service user
+      - "USER:Agent/Build:${/jenkins/config/serviceuser/username}"
+      - "USER:Agent/Configure:${/jenkins/config/serviceuser/username}"
+      - "USER:Agent/Connect:${/jenkins/config/serviceuser/username}"
+      - "USER:Agent/Create:${/jenkins/config/serviceuser/username}"
+      - "USER:Agent/Delete:${/jenkins/config/serviceuser/username}"
+      - "USER:Agent/Disconnect:${/jenkins/config/serviceuser/username}"
+      - "USER:Job/Build:${/jenkins/config/serviceuser/username}"
+      - "USER:Job/Cancel:${/jenkins/config/serviceuser/username}"
+      - "USER:Job/Read:${/jenkins/config/serviceuser/username}"
+      - "USER:Overall/Read:${/jenkins/config/serviceuser/username}"
+      - "USER:Run/Replay:${/jenkins/config/serviceuser/username}"
+      - "USER:View/Read:${/jenkins/config/serviceuser/username}"
+      # Groups
+      - "GROUP:Agent/Build:${/jenkins/config/groups/ly-team}"
+      - "GROUP:Job/Build:${/jenkins/config/groups/ly-team}"
+      - "GROUP:Job/Cancel:${/jenkins/config/groups/ly-team}"
+      - "GROUP:Job/Read:${/jenkins/config/groups/ly-team}"
+      - "GROUP:Overall/Read:${/jenkins/config/groups/ly-team}"
+      - "GROUP:Run/Replay:${/jenkins/config/groups/ly-team}"
+      - "GROUP:View/Read:${/jenkins/config/groups/ly-team}"

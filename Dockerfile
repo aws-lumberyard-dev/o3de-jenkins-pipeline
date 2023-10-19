@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.361.3-lts-jdk11
+FROM jenkins/jenkins:2.346.3-2-lts-jdk11
 
 # Using JENKINS_HOME and REF set on the base image
 ARG uid=1000
@@ -39,7 +39,6 @@ ENV JENKINS_OPTS="--webroot=${JENKINS_LOCAL}/war"
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false \
   -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400 \
   -Djenkins.model.Jenkins.logStartupPerformance=true \
-  -Djenkins.model.Jenkins.buildsDir=${JENKINS_HOME}/builds/\${ITEM_FULL_NAME} \
   -Xms8g \
   -Xmx8g \
   -XX:+AlwaysPreTouch \

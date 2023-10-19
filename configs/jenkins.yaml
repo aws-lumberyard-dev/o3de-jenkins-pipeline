@@ -1,4 +1,12 @@
 jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  labelString: "controller"
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false
+  noUsageStatistics: true
   numExecutors: 6  # Jenkins pipeline runs some pre/post-build pipeline tasks on the controller. Increased from default (2) to prevent long queues.
   securityRealm:
     saml:
@@ -15,44 +23,51 @@ jenkins:
         url: ${/jenkins/config/idp-url}
       maximumAuthenticationLifetime: 86400
       usernameCaseConversion: "lowercase"
-  authorizationStrategy:
-    projectMatrix:
-      permissions:
-      - "Overall/Administer:${ADMIN_ROLE}"  # User/group assigned as admin. For additional permissions see matrix_authorization.template
   remotingSecurity:
     enabled: true
 unclassified:
   location:
     url: ${/jenkins/config/url}
-    adminAddress: "${/jenkins/config/email}"
+    adminAddress: "${/jenkins/config/admin-address}"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleOnOver
-  email-ext:
-    defaultBody: |-
-      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
-
-      Check console output at $BUILD_URL to view the results.
-    defaultContentType: "text/plain"
-    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
-    defaultTriggerIds:
-    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
-    mailAccount:
-      smtpHost: "${/jenkins/config/smtp-host}"
-      smtpPassword: "${/jenkins/config/smtp-password}"
-      smtpUsername: "${/jenkins/config/smtp-username}"
-      useTls: true
+  mailer:
+    authentication:
+      password: ${/jenkins/config/mail/password}
+      username: ${/jenkins/config/mail/username}
+    charset: "UTF-8"
+    smtpHost: "email-smtp.us-west-2.amazonaws.com"
+    useTls: true
 security:
   scriptApproval:
     approvedSignatures:
-    - "field hudson.plugins.git.GitSCM GIT_BRANCH"
     - "field hudson.plugins.git.GitSCM GIT_COMMIT"
-    - "method hudson.model.Cause$UserIdCause getUserId"
-    - "method hudson.model.Run getCause java.lang.Class"
+    - "field hudson.plugins.git.GitSCMBackwardCompatibility source"
+    - "field hudson.plugins.git.UserRemoteConfig refspec"
+    - "field java.lang.String value"
+    - "method groovy.lang.Closure leftShift groovy.lang.Closure"
+    - "method groovy.lang.GroovyObject getProperty java.lang.String"
+    - "method groovy.lang.GroovyObject invokeMethod java.lang.String java.lang.Object"
+    - "method hudson.model.Actionable getActions"
+    - "method hudson.model.PersistenceRoot getRootDir"
+    - "method java.lang.Throwable getStackTrace"
     - "method java.net.URL getHost"
     - "method java.net.URL getPort"
     - "method java.net.URL getProtocol"
-    - "new java.net.URL java.lang.String java.lang.String int java.lang.String"
+    - "method jenkins.model.Jenkins getItemByFullName java.lang.String"
+    - "method jenkins.plugins.git.AbstractGitSCMSource$SCMRevisionImpl getHash"
+    - "method jenkins.scm.api.SCMRevisionAction getRevision"
     - "method org.jenkinsci.plugins.workflow.steps.FlowInterruptedException getCauses"
     - "method org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper getRawBuild"
+    - "new groovy.lang.Tuple2 java.lang.Object java.lang.Object"
+    - "new java.io.File java.lang.String"
     - "new java.net.URL java.lang.String java.lang.String int java.lang.String"
     - "staticMethod jenkins.model.Jenkins getInstance"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods drop java.lang.Object[]\
+      \ int"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.lang.Object\
+      \ java.lang.String"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods putAt java.lang.Object\
+      \ java.lang.String java.lang.Object"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods size java.util.regex.Matcher"
+    - "staticField hudson.plugins.git.GitSCM GIT_COMMIT"

@@ -1,15 +1,16 @@
-multibranchPipelineJob('O3DE-FORK') {
+multibranchPipelineJob('O3DE-LY-FORK') {
     branchSources {
         branchSource {
             source {
                 github {
-                    id('O3DE-FORK-GitHub')
+                    id('O3DE-LY-FORK')
+                    configuredByUrl(false)
+                    credentialsId('github')
                     repoOwner('aws-lumberyard-dev')
                     repository('o3de')
                     repositoryUrl('https://github.com/aws-lumberyard-dev/o3de.git')
-                    configuredByUrl(false)
-                    credentialsId('github-access-token')
                     traits {
+                        authorInChangelogTrait()
                         gitHubBranchDiscovery {
                             strategyId(3)
                         }
@@ -40,6 +41,13 @@ multibranchPipelineJob('O3DE-FORK') {
             }
         }
     }
+    configure {
+        def traits = it / 'sources' / 'data' / 'jenkins.branch.BranchSource' / 'source' / 'traits'
+        traits << 'org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait' {
+            strategyId(1)
+            trust(class: 'org.jenkinsci.plugins.github_branch_source.ForkPullRequestDiscoveryTrait$TrustPermission')
+        }
+    }
     description('Pipeline Job for the GE&DS fork of the O3DE repo.')
     displayName('O3DE LY-Fork [Branches]')
     factory {
@@ -53,11 +61,9 @@ multibranchPipelineJob('O3DE-FORK') {
             numToKeep(14)
         }
     }
-    configure {
-        def traits = it / 'sources' / 'data' / 'jenkins.branch.BranchSource' / 'source' / 'traits'
-        traits << 'org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait' {
-            strategyId(1)
-            trust(class: 'org.jenkinsci.plugins.github_branch_source.ForkPullRequestDiscoveryTrait$TrustPermission')
+    triggers {
+        periodicFolderTrigger {
+            interval('2m')
         }
     }
 }

@@ -1,0 +1,29 @@
+# Config to create views to organize jobs
+jenkins:
+  primaryView:
+    list:
+      name: "O3DE-Fork"
+  views:
+  - all:
+      name: "all"
+  - list:
+      description: "<h3>AR Pipeline for aws-lumberyard-dev fork</h3>\r\n\r\n<p>Game\
+        \ Engine & Developer Services Fork of O3DE: <a href=\"https://github.com/aws-lumberyard-dev/o3de\"\
+        >https://github.com/aws-lumberyard-dev/o3de</a></p>\r\n\r\n<p>Report AR failures:\
+        \ <a href=\"https://wiki.agscollab.com/pages/viewpage.action?pageId=118984287\"\
+        >https://wiki.agscollab.com/pages/viewpage.action?pageId=118984287</a><br>\r\
+        \n  AR Known Issues: <a href=\"https://wiki.agscollab.com/display/lmbr/Known+issues+with+AR+build\"\
+        >https://wiki.agscollab.com/display/lmbr/Known+issues+with+AR+build</a></p>\r\
+        \n\r\n<p>AR pipeline for pull requests (This is the O3DE instance): <a href=\"\
+        https://jenkins.build.o3de.org/job/O3DE/view/change-requests/\">https://jenkins.build.o3de.org</a></p>\r\
+        \n"
+      jobNames:
+      - "O3DE-LY-FORK"
+      name: "O3DE-Fork"
+      recurse: true
+  - list:
+      jobNames:
+      - "o3de-atom-sampleviewer-dev"
+      name: "Projects"
+  - list:
+      name: "xInternal-Projects"

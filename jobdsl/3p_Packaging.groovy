@@ -15,18 +15,23 @@ freeStyleJob('3p_Packaging/3p_System_Promote_Dev_to_Prod') {
     }
     properties {
         authorizationMatrix {
+            entries{
+                group{
+                    name('${/jenkins/config/admin}')
+                    permissions([
+                        'hudson.model.Item.Build',
+                        'hudson.model.Item.Cancel',
+                        'hudson.model.Item.Configure',
+                        'hudson.model.Item.Read:authenticated',
+                        'hudson.model.Item.Read',
+                        'hudson.model.Item.Workspace',
+                        'hudson.model.Run.Replay',
+                        'hudson.model.Run.Update'
+                    ])
+                }
+            }
             inheritanceStrategy {
                 inheriting()
-                permissions([
-                    'GROUP:hudson.model.Item.Build:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Item.Cancel:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Item.Configure:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Item.Read:authenticated',
-                    'GROUP:hudson.model.Item.Read:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Item.Workspace:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Run.Replay:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Run.Update:${/jenkins/config/admin}'
-                ])
             }
         }
     }
@@ -54,18 +59,23 @@ freeStyleJob('3p_Packaging/Validate_Package') {
     }
     properties {
         authorizationMatrix {
+            entries{
+                group{
+                    name('${/jenkins/config/admin}')
+                    permissions([
+                        'hudson.model.Item.Build',
+                        'hudson.model.Item.Cancel',
+                        'hudson.model.Item.Configure',
+                        'hudson.model.Item.Read:authenticated',
+                        'hudson.model.Item.Read',
+                        'hudson.model.Item.Workspace',
+                        'hudson.model.Run.Replay',
+                        'hudson.model.Run.Update'
+                    ])
+                }
+            }
             inheritanceStrategy {
                 inheriting()
-                permissions([
-                    'GROUP:hudson.model.Item.Build:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Item.Cancel:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Item.Configure:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Item.Read:authenticated',
-                    'GROUP:hudson.model.Item.Read:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Item.Workspace:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Run.Replay:${/jenkins/config/admin}',
-                    'GROUP:hudson.model.Run.Update:${/jenkins/config/admin}'
-                ])
             }
         }
     }

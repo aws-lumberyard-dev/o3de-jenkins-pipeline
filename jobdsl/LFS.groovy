@@ -8,27 +8,32 @@ freeStyleJob('LFS/CreateLFS-aws-lumberyard') {
     }
     properties {
         authorizationMatrix {
+            entries{
+                group{
+                    name('${/jenkins/config/team}')
+                    permissions([
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.Create',
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.Delete',
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains',
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.Update',
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.View',
+                        'hudson.model.Item.Build',
+                        'hudson.model.Item.Cancel',
+                        'hudson.model.Item.Configure',
+                        'hudson.model.Item.Delete',
+                        'hudson.model.Item.Discover',
+                        'hudson.model.Item.Move',
+                        'hudson.model.Item.Read',
+                        'hudson.model.Item.Workspace',
+                        'hudson.model.Run.Delete',
+                        'hudson.model.Run.Replay',
+                        'hudson.model.Run.Update',
+                        'hudson.scm.SCM.Tag'
+                    ])
+                }
+            }
             inheritanceStrategy {
                 inheriting()
-                permissions([
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.Create:${/jenkins/config/team}',
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.Delete:${/jenkins/config/team}',
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:${/jenkins/config/team}',
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.Update:${/jenkins/config/team}',
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.View:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Build:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Cancel:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Configure:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Delete:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Discover:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Move:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Read:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Workspace:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Run.Delete:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Run.Replay:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Run.Update:${/jenkins/config/team}',
-                    'GROUP:hudson.scm.SCM.Tag:${/jenkins/config/team}'
-                ])
             }
         }
     }
@@ -133,27 +138,32 @@ freeStyleJob('LFS/CreateLFS-Internal') {
     }
     properties {
         authorizationMatrix {
+            entries{
+                group{
+                    name('${/jenkins/config/team}')
+                    permissions([
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.Create',
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.Delete',
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains',
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.Update',
+                        'com.cloudbees.plugins.credentials.CredentialsProvider.View',
+                        'hudson.model.Item.Build',
+                        'hudson.model.Item.Cancel',
+                        'hudson.model.Item.Configure',
+                        'hudson.model.Item.Delete',
+                        'hudson.model.Item.Discover',
+                        'hudson.model.Item.Move',
+                        'hudson.model.Item.Read',
+                        'hudson.model.Item.Workspace',
+                        'hudson.model.Run.Delete',
+                        'hudson.model.Run.Replay',
+                        'hudson.model.Run.Update',
+                        'hudson.scm.SCM.Tag'
+                    ])
+                }
+            }
             inheritanceStrategy {
                 inheriting()
-                permissions([
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.Create:${/jenkins/config/team}',
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.Delete:${/jenkins/config/team}',
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:${/jenkins/config/team}',
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.Update:${/jenkins/config/team}',
-                    'GROUP:com.cloudbees.plugins.credentials.CredentialsProvider.View:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Build:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Cancel:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Configure:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Delete:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Discover:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Move:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Read:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Item.Workspace:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Run.Delete:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Run.Replay:${/jenkins/config/team}',
-                    'GROUP:hudson.model.Run.Update:${/jenkins/config/team}',
-                    'GROUP:hudson.scm.SCM.Tag:${/jenkins/config/team}'
-                ])
             }
         }
     }

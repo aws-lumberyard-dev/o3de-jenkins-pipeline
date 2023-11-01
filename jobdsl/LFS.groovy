@@ -12,23 +12,23 @@ freeStyleJob('LFS/CreateLFS-aws-lumberyard') {
                 group{
                     name('${/jenkins/config/team}')
                     permissions([
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.Create',
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.Delete',
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains',
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.Update',
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.View',
-                        'hudson.model.Item.Build',
-                        'hudson.model.Item.Cancel',
-                        'hudson.model.Item.Configure',
-                        'hudson.model.Item.Delete',
-                        'hudson.model.Item.Discover',
-                        'hudson.model.Item.Move',
-                        'hudson.model.Item.Read',
-                        'hudson.model.Item.Workspace',
-                        'hudson.model.Run.Delete',
-                        'hudson.model.Run.Replay',
-                        'hudson.model.Run.Update',
-                        'hudson.scm.SCM.Tag'
+                        'Credentials/Create',
+                        'Credentials/Delete',
+                        'Credentials/ManageDomains',
+                        'Credentials/Update',
+                        'Credentials/View',
+                        'Job/Build',
+                        'Job/Cancel',
+                        'Job/Configure',
+                        'Job/Delete',
+                        'Job/Discover',
+                        'Job/Move',
+                        'Job/Read',
+                        'Job/Workspace',
+                        'Run/Delete',
+                        'Run/Replay',
+                        'Run/Update',
+                        'SCM/Tag'
                     ])
                 }
             }
@@ -142,23 +142,23 @@ freeStyleJob('LFS/CreateLFS-Internal') {
                 group{
                     name('${/jenkins/config/team}')
                     permissions([
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.Create',
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.Delete',
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains',
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.Update',
-                        'com.cloudbees.plugins.credentials.CredentialsProvider.View',
-                        'hudson.model.Item.Build',
-                        'hudson.model.Item.Cancel',
-                        'hudson.model.Item.Configure',
-                        'hudson.model.Item.Delete',
-                        'hudson.model.Item.Discover',
-                        'hudson.model.Item.Move',
-                        'hudson.model.Item.Read',
-                        'hudson.model.Item.Workspace',
-                        'hudson.model.Run.Delete',
-                        'hudson.model.Run.Replay',
-                        'hudson.model.Run.Update',
-                        'hudson.scm.SCM.Tag'
+                        'Credentials/Create',
+                        'Credentials/Delete',
+                        'Credentials/ManageDomains',
+                        'Credentials/Update',
+                        'Credentials/View',
+                        'Job/Build',
+                        'Job/Cancel',
+                        'Job/Configure',
+                        'Job/Delete',
+                        'Job/Discover',
+                        'Job/Move',
+                        'Job/Read',
+                        'Job/Workspace',
+                        'Run/Delete',
+                        'Run/Replay',
+                        'Run/Update',
+                        'SCM/Tag'
                     ])
                 }
             }

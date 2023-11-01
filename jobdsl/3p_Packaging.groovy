@@ -19,14 +19,13 @@ freeStyleJob('3p_Packaging/3p_System_Promote_Dev_to_Prod') {
                 group{
                     name('${/jenkins/config/admin}')
                     permissions([
-                        'hudson.model.Item.Build',
-                        'hudson.model.Item.Cancel',
-                        'hudson.model.Item.Configure',
-                        'hudson.model.Item.Read:authenticated',
-                        'hudson.model.Item.Read',
-                        'hudson.model.Item.Workspace',
-                        'hudson.model.Run.Replay',
-                        'hudson.model.Run.Update'
+                        'Job/Build',
+                        'Job/Cancel',
+                        'Job/Configure',
+                        'Job/Read',
+                        'Job/Workspace',
+                        'Run/Replay',
+                        'Run/Update'
                     ])
                 }
             }
@@ -63,14 +62,13 @@ freeStyleJob('3p_Packaging/Validate_Package') {
                 group{
                     name('${/jenkins/config/admin}')
                     permissions([
-                        'hudson.model.Item.Build',
-                        'hudson.model.Item.Cancel',
-                        'hudson.model.Item.Configure',
-                        'hudson.model.Item.Read:authenticated',
-                        'hudson.model.Item.Read',
-                        'hudson.model.Item.Workspace',
-                        'hudson.model.Run.Replay',
-                        'hudson.model.Run.Update'
+                        'Job/Build',
+                        'Job/Cancel',
+                        'Job/Configure',
+                        'Job/Read',
+                        'Job/Workspace',
+                        'Run/Replay',
+                        'Run/Update'
                     ])
                 }
             }

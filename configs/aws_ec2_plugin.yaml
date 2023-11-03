@@ -129,44 +129,6 @@ jenkins:
         type: M5Large
         useEphemeralDevices: false
         zone: "us-west-2b"
-      - ami: "ami-0b6a8649a4a28adb2"
-        amiType:
-          unixData:
-            sshPort: "22"
-        associatePublicIp: false
-        connectBySSHProcess: false
-        connectionStrategy: PRIVATE_IP
-        deleteRootOnTermination: false
-        description: "WIN2019_INC_3"
-        ebsEncryptRootVolume: DEFAULT
-        ebsOptimized: true
-        hostKeyVerificationStrategy: ACCEPT_NEW
-        iamInstanceProfile: ${/jenkins/config/instanceprofile}
-        idleTerminationMinutes: "30"
-        labelString: "windows-b3c8994f1"
-        maxTotalUses: 1
-        metadataEndpointEnabled: true
-        metadataHopsLimit: 1
-        metadataTokensRequired: true
-        minimumNumberOfInstances: 0
-        minimumNumberOfSpareInstances: 0
-        mode: EXCLUSIVE
-        monitoring: false
-        numExecutors: 1
-        remoteAdmin: ${/jenkins/config/buildnode/username}
-        remoteFS: "c:/ly"
-        securityGroups: ${/jenkins/config/security-group}
-        stopOnTerminate: false
-        subnetId: "subnet-0a67f5cb6cc79e89f"
-        t2Unlimited: false
-        tags:
-        - name: "Name"
-          value: "WIN2019_INC_3"
-        tenancy: Default
-        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
-        type: C59xlarge
-        useEphemeralDevices: false
-        zone: "us-west-2a"
       - ami: "ami-00e9cadd4c5aae19a"
         amiType:
           unixData:
@@ -261,47 +223,6 @@ jenkins:
           sudo apt install -y chrony libzstd-dev\n\nsed -i '1s/^/server 169.254.169.123\
           \ prefer iburst minpoll 4 maxpoll 4\\n/' /etc/chrony/chrony.conf\n/etc/init.d/chrony\
           \ restart"
-        zone: "us-west-2a"
-      - ami: "ami-000a8c3f0d8d4e26b"
-        amiType:
-          unixData:
-            sshPort: "22"
-        associatePublicIp: false
-        connectBySSHProcess: false
-        connectionStrategy: PRIVATE_IP
-        deleteRootOnTermination: false
-        description: "WIN2019_INC_4"
-        ebsEncryptRootVolume: DEFAULT
-        ebsOptimized: true
-        hostKeyVerificationStrategy: ACCEPT_NEW
-        iamInstanceProfile: ${/jenkins/config/instanceprofile}
-        idleTerminationMinutes: "30"
-        labelString: "windows-8fe4037c"
-        launchTimeoutStr: "600"
-        maxTotalUses: 1
-        metadataEndpointEnabled: true
-        metadataHopsLimit: 1
-        metadataTokensRequired: true
-        minimumNumberOfInstances: 0
-        minimumNumberOfSpareInstances: 0
-        mode: EXCLUSIVE
-        monitoring: false
-        numExecutors: 1
-        remoteAdmin: ${/jenkins/config/buildnode/username}
-        remoteFS: "c:/ly"
-        securityGroups: ${/jenkins/config/security-group}
-        stopOnTerminate: false
-        subnetId: ${/jenkins/config/subnet-id}
-        t2Unlimited: false
-        tags:
-        - name: "Name"
-          value: "WIN2019_INC_4"
-        tenancy: Default
-        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
-        type: C6a4xlarge
-        useEphemeralDevices: false
-        userData: "<powershell>\n[Environment]::SetEnvironmentVariable(\"JAVA_HOME\"\
-          , $null ,\"Machine\") \n</powershell>"
         zone: "us-west-2a"
       - ami: "ami-0cc5f9d0b6dd8e982"
         amiType:
@@ -465,54 +386,6 @@ jenkins:
           python3 -m pip install PyGithub
         zone: "us-west-2a"
   - amazonEC2:
-      cloudName: "gpu-cpu-tests-us-west-2"
-      region: "us-west-2"
-      sshKeysCredentialsId: "jenkins-build-node"
-      templates:
-      - ami: "ami-08d5a7dde471291ad"
-        amiType:
-          unixData:
-            sshPort: "22"
-        associatePublicIp: false
-        connectBySSHProcess: false
-        connectionStrategy: PRIVATE_IP
-        deleteRootOnTermination: false
-        description: "WIN2019_GPU_2_Test"
-        ebsEncryptRootVolume: DEFAULT
-        ebsOptimized: true
-        hostKeyVerificationStrategy: ACCEPT_NEW
-        iamInstanceProfile: ${/jenkins/config/instanceprofile}
-        idleTerminationMinutes: "30"
-        labelString: "windows-gpu-test"
-        launchTimeoutStr: "600"
-        maxTotalUses: 1
-        metadataEndpointEnabled: true
-        metadataHopsLimit: 1
-        metadataTokensRequired: true
-        minimumNumberOfInstances: 0
-        minimumNumberOfSpareInstances: 0
-        mode: EXCLUSIVE
-        monitoring: false
-        numExecutors: 1
-        remoteAdmin: ${/jenkins/config/buildnode/username}
-        remoteFS: "c:/ly"
-        securityGroups: ${/jenkins/config/security-group}
-        spotConfig:
-          spotMaxBidPrice: "3.64"
-          useBidPrice: true
-        stopOnTerminate: false
-        subnetId: "subnet-0a67f5cb6cc79e89f"
-        t2Unlimited: false
-        tags:
-        - name: "Name"
-          value: "WIN2019_GPU_2"
-        tenancy: Default
-        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
-        type: G4dn4xlarge
-        useEphemeralDevices: false
-        zone: "us-west-2a"
-      useInstanceProfileForCredentials: false
-  - amazonEC2:
       cloudName: "Metrics"
       noDelayProvisioning: true
       region: "us-west-2"
@@ -617,46 +490,6 @@ jenkins:
           gpg-connect-agent reloadagent /bye;\nchown -R lybuilder $GNUPGHOME;\necho\
           \ -e \"$pass\\n\" | keychain --eval --agents gpg $fpr;\n`"
         zone: "us-west-2a"
-      - ami: "ami-0b6a8649a4a28adb2"
-        amiType:
-          unixData:
-            sshPort: "22"
-        associatePublicIp: false
-        connectBySSHProcess: false
-        connectionStrategy: PRIVATE_IP
-        deleteRootOnTermination: false
-        description: "WIN2019_INC_4_Installer_Test"
-        ebsEncryptRootVolume: DEFAULT
-        ebsOptimized: true
-        hostKeyVerificationStrategy: ACCEPT_NEW
-        iamInstanceProfile: ${/jenkins/config/instanceprofile}
-        idleTerminationMinutes: "30"
-        labelString: "windows-installer-test windows-packaging"
-        launchTimeoutStr: "600"
-        maxTotalUses: -1
-        metadataEndpointEnabled: true
-        metadataHopsLimit: 1
-        metadataTokensRequired: true
-        minimumNumberOfInstances: 0
-        minimumNumberOfSpareInstances: 0
-        mode: EXCLUSIVE
-        monitoring: false
-        numExecutors: 1
-        remoteAdmin: ${/jenkins/config/buildnode/username}
-        remoteFS: "c:/ly"
-        securityGroups: ${/jenkins/config/security-group}
-        stopOnTerminate: false
-        subnetId: "subnet-0a67f5cb6cc79e89f"
-        t2Unlimited: false
-        tags:
-        - name: "Name"
-          value: "WIN2019_INC_4_Installer_Test"
-        tenancy: Default
-        tmpDir: "$(cygpath -w /cygdrive/c/ly)"
-        type: C59xlarge
-        useEphemeralDevices: false
-        zone: "us-west-2a"
-      useInstanceProfileForCredentials: false
   - amazonEC2:
       cloudName: "Management"
       region: "us-west-2"

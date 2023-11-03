@@ -29,14 +29,6 @@ multibranchPipelineJob('O3DE-LY-FORK') {
                             triggeredBranchesRegex('^$')
                         }
                     }
-                    namedExceptions {
-                        named {
-                            name('main')
-                        }
-                        named {
-                            name('development')
-                        }
-                    }
                 }
             }
         }

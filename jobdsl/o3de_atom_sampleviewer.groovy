@@ -29,17 +29,6 @@ multibranchPipelineJob('o3de-atom-sampleviewer-dev') {
                             triggeredBranchesRegex('^$')
                         }
                     }
-                    namedExceptions {
-                        named {
-                            name('main')
-                        }
-                        named {
-                            name('development')
-                        }
-                        named {
-                            name('stabilization/*')
-                        }
-                    }
                 }
             }
         }

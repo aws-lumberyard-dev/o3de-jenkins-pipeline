@@ -13,6 +13,7 @@ email-ext:2.102
 external-monitor-job:215.v2e88e894db_f8
 github-branch-source:1741.va_3028eb_9fd21
 github-oauth:588.vf696a_350572a_
+git-server-plugin:114.v068a_c7cc2574
 greenballs:1.15.1
 job-dsl:1.86
 mailer:463.vedf8358e006b_

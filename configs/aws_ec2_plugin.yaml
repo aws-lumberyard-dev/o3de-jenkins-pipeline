@@ -2,7 +2,7 @@
 jenkins:
   clouds:
   - amazonEC2:
-      cloudName: ${/jenkins/config/aws-region}
+      name: ${/jenkins/config/aws-region}
       instanceCapStr: "300"
       noDelayProvisioning: true
       region: "us-west-2"
@@ -333,7 +333,7 @@ jenkins:
         zone: "us-west-2a"
       useInstanceProfileForCredentials: false
   - amazonEC2:
-      cloudName: "mac-us-west-2"
+      name: "mac-us-west-2"
       instanceCapStr: "20"
       noDelayProvisioning: true
       region: "us-west-2"
@@ -386,7 +386,7 @@ jenkins:
           python3 -m pip install PyGithub
         zone: "us-west-2a"
   - amazonEC2:
-      cloudName: "Metrics"
+      name: "Metrics"
       noDelayProvisioning: true
       region: "us-west-2"
       sshKeysCredentialsId: "jenkins-build-node"
@@ -437,7 +437,7 @@ jenkins:
         zone: "us-west-2b"
       useInstanceProfileForCredentials: false
   - amazonEC2:
-      cloudName: "Packaging"
+      name: "Packaging"
       region: "us-west-2"
       sshKeysCredentialsId: "jenkins-build-node"
       templates:
@@ -491,7 +491,7 @@ jenkins:
           \ -e \"$pass\\n\" | keychain --eval --agents gpg $fpr;\n`"
         zone: "us-west-2a"
   - amazonEC2:
-      cloudName: "Management"
+      name: "Management"
       region: "us-west-2"
       sshKeysCredentialsId: "jenkins-build-node"
       templates:
